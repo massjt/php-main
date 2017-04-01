@@ -43,3 +43,4 @@ linux下安装lamp环境安装:
 - max_execution_time = 30 php执行脚本上限时间    
 - max_input_time = 60     php脚本解析请求数据所用时间限制
 - memory_limit = 128M     为php分配的最大内存量
+- post_max_size           表单允许上传的最大文件大小
