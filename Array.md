@@ -145,3 +145,122 @@ print_r(array_keys($array, "blue"));
 
 `array_unique()` 移除数组中重复的值，并返回没有重复值得新数组
 
+7. 数组排序
+
+- 设置数组元素顺序
+
+`array_reverse()` 返回单元顺序相反的数组
+
+- 置换数组键和值
+
+`array_flip()` 交换数组中的键和值，注意 array 中的值需要能够作为合法的键名（例如需要是 integer 或者 string）。如果类型不对，将出现一个警告，并且有问题的键／值对将不会出现在结果里。
+
+如果同一个值出现多次，则最后一个键名将作为它的值，其它键会被丢弃。
+
+- 数组排序
+
+① `sort()`对数组进行排序，各元素按值由低到高的排序，可选第二个参数，可设置比较类型，如作为 数字、字符串等来比较
+
+② `asort()` 功能同`sort()`，但保持键值关系
+
+③ 以逆序对数组元素排序, `rsort()`
+
+④ 保持键值对的逆序, `arsort()`
+
+⑤ 自然排序 `natsort()`
+
+```php
+$array2 = array("img12.png", "img10.png", "img2.png", "img1.png");
+natsort($array2);
+print_r($array2);
+/*
+Array
+(
+    [3] => img1.png
+    [2] => img2.png
+    [1] => img10.png
+    [0] => img12.png
+)
+*/
+```
+
+⑥ 不区分大小写的自然排序 `natcasesort()`
+
+⑦ 对数组按照键名排序 `ksort()`,主要用于关联数组
+
+⑧ 以逆序对数组键排序, `krsort()`
+
+⑨ `usort()` 使用用户自定义的比较函数对数组中的值进行排序
+
+8. 合并、拆分、结合和分散数组
+
+① `array_merge()` — 合并一个或多个数组
+
+② 递归追加数组 `array_merge_recursive()`
+
+`array_merge()`与`array_merge_recursive()`相同，区别在于，当输入某个数组中的某个键已经存在于结果数组中时，`array_merge()`会覆盖前面存在的键值对，`array_merge_recursive()`会把两个值合并在一起，形成一个新的数组并以原有键作为数组名
+
+③ 合并两个数组 `array_combine`
+> `array_combine` — 创建一个数组，用一个数组的值作为其键名，另一个数组的值作为其值
+
+④ 拆分数组 `array_slice()`
+
+array_slice — 从数组中取出一段,可指定取出位置及偏移量,并返回
+
+```php
+array array_slice ( array $array , int $offset [, int $length = NULL [, bool $preserve_keys = false ]] )
+//array_slice() 返回根据 offset 和 length 参数所指定的 array 数组中的一段序列
+```
+
+⑤ 接合数组 `array_splice()`
+> 去掉数组中的某一部分并用其它值取代
+
+```php
+array array_splice ( array &$input , int $offset [, int $length = count($input) [, mixed $replacement = array() ]] )
+// 把 input 数组中由 offset 和 length 指定的单元去掉，如果提供了 replacement 参数，则用其中的单元取代
+```
+
+⑥ 求数组交集`array_intersect`
+
+```php
+array array_intersect ( array $array1 , array $array2 [, array $... ] )
+// array_intersect() 返回一个数组，该数组包含了所有在 array1 中也同时出现在所有其它参数数组中的值。注意键名保留不变
+```
+
+⑦ 求关联数组的交集`array_intersect_assoc`
+
+与`array_intersect`不同的是键名也用于比较
+
+⑧ 求数组差集`array_diff`
+
+```php
+array array_diff ( array $array1 , array $array2 [, array $... ] )
+//对比 array1 和其他一个或者多个数字，返回在 array1 中但是不在其他 array 里的值
+```
+
+⑨ 求关联数组的差集`array_diff_assoc`
+
+与`array_diff`的不同是键名也用于比较
+
+9. 其他有用的数组函数
+
+- 返回一组随机的键 `array_rand`
+
+从数组中取出一个或多个随机的单元，并返回随机条目的一个或多个键。
+
+```php
+mixed array_rand ( array $array [, int $num = 1 ] )
+// num是随机取出的个数
+```
+- 打乱数组`shuffle`
+
+- 对数组中的值求和 `array_sum`
+
+若数组中包含其他类型数据(如字符串),这些值将被忽略
+
+- 划分数组 `array_chunk`
+
+```php
+array array_chunk ( array $array , int $size [, bool $preserve_keys = false ] )
+```
+将一个数组分割成多个数组，其中每个数组的单元数目由 size 决定。第三个参数，设为 TRUE，可以使 PHP 保留输入数组中原来的键名
