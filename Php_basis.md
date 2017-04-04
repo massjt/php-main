@@ -215,7 +215,16 @@ keep_track();
     6. continue
 
 - 文件包含语句
+> 包含并运行指定文件
 
 `include`、`require`、`include_once`、`require_once`
+
+`include`和`require`区别:
+    - 未找到包含文件,`include`会发出警告,`require`会报出致命错误，脚本停止运行
+    - 无论`require`的位置如何，指定文件都将包含到出现`require`的脚本中,例如: 即使`require()`放在计算为假的`if`语句中，依然会包含指定文件
+
+`_once` php会检查该文件是否已经包含过，如果是则不会再次包含
+
+
 
 
