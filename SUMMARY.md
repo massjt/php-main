@@ -3,3 +3,6 @@
     - [php基础](./Php_basis.md)
     - [函数](./Function.md)
     - [数组](./Array.md)
+
+- [js 学习路径](./Js_router.md)
+    - [js基础语法及数据类型](Js_basis.md)
