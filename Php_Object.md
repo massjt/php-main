@@ -124,3 +124,16 @@ class CdProduct extends ShopProduct {
 ```
 
 ③ public、private、protected管理类的访问
+> 类中的元素可以被声明为public、private或protected
+
+    在任何地方都可以访问`public`属性
+
+    只能在当前类或子类中访问`private`方法或属性，即使在子类中也不能访问
+
+    可以在当前类或子类中访问`protected`方法或属性
+
+用处: 可见性关键字允许我们只公开类中客户需要的部分，这给对象设置提供了一个清晰的接口
+
+**访问方法: getter 和 setter**
+> 客户端程序员需要使用类中保存的值时，通常比较好的做法是不要允许直接访问属性，而是提供方法来取得需要的值，称为访问方法，也称getter和setter
+
