@@ -137,3 +137,107 @@ class CdProduct extends ShopProduct {
 **访问方法: getter 和 setter**
 > 客户端程序员需要使用类中保存的值时，通常比较好的做法是不要允许直接访问属性，而是提供方法来取得需要的值，称为访问方法，也称getter和setter
 
+```php
+//使用场景
+//先来观察以下代码:
+abstract class base {
+  //do sth
+}
+class aClass extends base{
+  public static function create(){
+    return new aClass();
+  } 
+}
+class bClass extends base{
+  public static function create(){
+    return new bClass();
+  }
+}
+var_dump(aClass::create());
+var_dump(bClass::create());
+/*
+输出：
+object(aClass)#1 (0) { } object(bClass)#1 (0) { }
+以上aClass和bClass继承于base这个抽象类，但是在两个子类中同时实现了create()这个静态方法。遵从oop思想，这种重复代码应该放在base这个父类中实现。
+改进代码
+*/
+abstract class base {
+  public static function create(){
+    return new self();
+  } 
+}
+class aClass extends base{
+}
+class bClass extends base{
+}
+var_dump(aClass::create());
+var_dump(bClass::create());
+/*
+现在的代码看起来好像已经符合我们之前的想法，将create()方法放在父类里共用了，那我们来运行下看会发生什么。
+Cannot instantiate abstract class base in ...
+很遗憾，代码好像并没有按照我们预想的那样去运行，父类中的self()被解析为base这个父类，并非继承与他的子类。于是为了解决这个问题，php5.3中引入了延迟静态绑定这个概念。
+延迟静态绑定
+*/
+abstract class base {
+  public static function create(){
+    return new static();
+  } 
+}
+class aClass extends base{
+}
+class bClass extends base{
+}
+var_dump(aClass::create());
+var_dump(bClass::create());
+/*
+这个代码与之前的几乎一致，不同点在于将self换成了static这个关键字，static会解析为子类，而非父类，这样就可以解决上面遇到的问题，这就是php的延迟静态绑定。
+最后，运行一下代码，得到了最终想要的结果。
+object(aClass)#1 (0) { } object(bClass)#1 (0) { }
+*/
+```
+
+- 错误处理
+
+**异常**,是从PHP5内置的Exception类(或其子类)实例化得到的特殊对象，Exception类型的对象用于存放和报告错误信息
+
+① 抛出异常
+联合使用`throw`和`Exception`对象来抛出异常，这会停止执行当前方法，并负责将错误返回给调用代码。
+
+```php
+function __construct( $file ) {
+    $this->file = $file;
+    if ( !file_exists($file) ) {
+        throw new Exception( "file '$file' does not exist" );
+    }
+}
+```
+
+
+那么抛出异常时，客户端代码怎么知道如何处理异常？如果调用可能会抛出异常的方法，那么可以把调用语句放在try子句中。**try子句必须跟着至少一个catch子句才能处理错误**
+
+```php
+try {
+    $conf = new Conf('');
+    // ...
+} catch ( Exception $e ) {
+    die( $e->__toString );
+}
+
+```
+
+② 异常的子类化
+> 若创建用户自定义的异常类，可以从Exception类继承。
+
+这样做两个好处:
+
+    ① 可以扩展异常类的功能
+
+    ② 子类定义了新的异常类型，可以进行自己特有的错误处理
+
+- Final类和方法
+
+final关键字可以终止类的继承。final类不能有子类，final方法不能被覆写
+
+也可为某个类方法声明为final, 但final关键字应该放在其他修饰词之前
+
+(谨慎使用final,将会减少代码的灵活性)

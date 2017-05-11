@@ -118,3 +118,5 @@ class Consultancy extends TimedService implements Bookable, Chargeable {
 
 - 延迟静态绑定: static关键字
 > 静态方法可用作工厂方法，工厂方法是生成包含类的实例的一种方法。
+
+static关键字不仅仅可以用于实例化，还可作为静态方法调用的标识符，甚至是从非静态上下文调用
