@@ -245,8 +245,29 @@ final关键字可以终止类的继承。final类不能有子类，final方法�
 - 使用拦截器
 > php提供了内置的拦截器(interceptor)方法，可"拦截"发送到未定义方法和属性的消息。
 
-`__get`
-`__set`
-`__isset`
-`__unset`
-`__call`
+`__get`     访问未定义的属性时被调用
+`__set`     给未定义的属性赋值时被调用
+`__isset`   对未定义的属性调用isset时被调用
+`__unset`   对未定义的属性调用unset时被调用
+`__call`    调用未定义的方法时被调用
+
+`__call`方法对于实现委托很有用
+
+```php
+class Person {
+    private $writer;
+    
+    function __construct(PersonWriter $writer) {
+        $this->writer = $writer;
+    }
+
+    function __call( $methodname, $args ) {
+        if ( method_exists( $thiss->writer, $methodname ) ) {
+            return $this->writer->$methodname( $this );
+        }
+    }
+}
+```
+
+- 析造方法(__destruct)
+> 对象被垃圾收集器收集前(即对象从内存中删除之前)自动调用，可以用该方法进行最后必要的清理工作。
