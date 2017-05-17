@@ -8,3 +8,4 @@
 
 - [js 学习路径](./Js_router.md)
     - [js基础语法及数据类型](Js_basis.md)
+    - [jQuery](./jQuery.md)
