@@ -314,3 +314,20 @@ print $person;
 对于日志和错误报告，__toString()方法会非常有用，也可用于设计专门用来传递信息的类，如Exception类可以把关于异常数据的总结信息写到`__toString`方法中
 
 - 回调、匿名函数和闭包
+
+回调，想jQuery中事件处理完毕后，调用的function一样
+利用回调，在运行时将于组件的核心任务没有直接关系的功能插入到组件，有了组件回调，就赋予了其他人在你不知道的上下文中扩展你的代码的权利。
+
+常见函数`call_user_func`和`call_user_func_array`
+
+![参考](http://www.cnitblog.com/CoffeeCat/archive/2009/04/21/56541.html)
+
+**匿名函数**也称闭包函数
+
+```php
+$message = 'hello';
+$example = function () use (&$message) {
+    var_dump($message);
+};
+// 通过use引用匿名函数其父作用域中声明的变量
+```
