@@ -320,7 +320,7 @@ print $person;
 
 常见函数`call_user_func`和`call_user_func_array`
 
-![参考](http://www.cnitblog.com/CoffeeCat/archive/2009/04/21/56541.html)
+[参考](http://www.cnitblog.com/CoffeeCat/archive/2009/04/21/56541.html)
 
 **匿名函数**也称闭包函数
 
