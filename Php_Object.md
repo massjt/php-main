@@ -271,3 +271,46 @@ class Person {
 
 - 析造方法(__destruct)
 > 对象被垃圾收集器收集前(即对象从内存中删除之前)自动调用，可以用该方法进行最后必要的清理工作。
+
+- 复制对象 __clone()
+
+```php
+class CopyMe(){}
+$first = new CopyMe();
+$second = $first;
+// 注意: $first 和 $second 这两个变量包含指向同一个对象的引用，而没有各自保留一份相同的副本
+```
+
+PHP提供`clone`关键字达到 “值赋值” 目的，新生成一个对象
+
+```php
+class CopyMe(){}
+$first = new CopyMe();
+$second = clone $first;
+// $second 和 $first 现在是两个不同的对象
+```
+
+在对象调用clone时，我们可以控制复制什么。通过`__clone`方法来达到目的，当在一个对象上调用`clone`关键字时，其`__clone()`方法就被被自动调用
+
+- 定义对象的字符串值(__toString)
+
+当打印一个对象时，可通过`__toString`方法来控制输出字符串的格式，注意该方法要返回**字符串类型**值
+
+```php
+class Person {
+    function getName() { return "bob"; }
+    function getAge() { return 44; }
+    function __toString() {
+        $desc = $this->getName();
+        $desc .= "age is ".$this->getAge();
+        return $desc;
+    }
+}
+$person = new Person();
+print $person;
+// bob age is 44
+```
+
+对于日志和错误报告，__toString()方法会非常有用，也可用于设计专门用来传递信息的类，如Exception类可以把关于异常数据的总结信息写到`__toString`方法中
+
+- 回调、匿名函数和闭包
