@@ -506,3 +506,23 @@ class Lister {
 Lister::helloWorld();// 访问本地
 \Lister::helloWorld();// 访问全局空间
 ```
+
+- 自动加载
+> __autoload() spl_autoload_register() 函数 现代用composer
+
+### 类函数和对象函数
+> php提供了一系列强大的函数来检测类和对象。
+
+
+### 反射API
+> 由一系列可以分析属性、方法和类的内置类组成。
+
+    ReflectionClass 提供揭示给定类所有信息的方法
+    Reflection::export() 可提供类的相关信息
+
+```php
+$prod_class = new ReflectionClass( 'CdProduct' );
+Reflection::export( $prod_class );
+```
+
+等等，反射类很强大！
