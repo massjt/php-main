@@ -5,6 +5,7 @@
     - [数组](./Array.md)
     - [深入php 对象--对象基础](./Php_Object.md)
     - [深入php 对象--高级特性](./Php_Object_advanced.md)
+    - [深入php 对象与设计](./Php_Object_design.md)
 
 - [js 学习路径](./Js_router.md)
     - [js基础语法及数据类型](Js_basis.md)

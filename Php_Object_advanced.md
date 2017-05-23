@@ -66,7 +66,7 @@ abstract class ShopProductWriter {
 }
 ```
 
-创建抽象方法后，要确保所有子类中都实现该方法，但实现的细节可以先不确定。
+**创建抽象方法后，要确保所有子类中都实现该方法**，但实现的细节可以先不确定。
 
 如下:
 
@@ -118,7 +118,6 @@ class Consultancy extends TimedService implements Bookable, Chargeable {
 
 - 延迟静态绑定: static关键字
 > 静态方法可用作工厂方法，工厂方法是生成包含类的实例的一种方法。
-
 
 **创建构造方法**
 
@@ -526,3 +525,5 @@ Reflection::export( $prod_class );
 ```
 
 等等，反射类很强大！
+
+
